@@ -32,12 +32,16 @@ export default function PatientOverview({ patient }: PatientOverviewProps) {
         <div>
           <h2 className="text-2xl font-bold">{patient.name}</h2>
           <div className="flex items-center gap-4 text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Bed size={16} />
-              {patient.bed}
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <Bed size={16} />
+                {patient.bed}
+              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/25" />
+              <div>{patient.age} years</div>
+              <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/25" />
+              <div>{patient.gender}</div>
             </div>
-            <div>{patient.age} years</div>
-            <div>{patient.gender}</div>
           </div>
         </div>
 
