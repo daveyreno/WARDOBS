@@ -1,24 +1,49 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const wardfont = localFont({
+  src: [
+    {
+      path: "./fonts/sans_regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/sans_semibold.woff2",
+      weight: "500",
+      style: "semibold",
+    },
+    {
+      path: "./fonts/sans_bold.woff2",
+      weight: "700",
+      style: "bold",
+    },
+  ],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "WardObs",
   description: "To try to get a job at a cool startup again.",
 };
+
+function MobileWarning() {
+  return (
+    <div className="flex h-screen items-center justify-center p-4 text-center">
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Desktop View Required</h1>
+        <p className="text-muted-foreground">
+          Please view WardObs on a larger screen for the best experience.
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -27,17 +52,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${wardfont.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <div className="hidden sm:block">{children}</div>
+            <div className="sm:hidden">
+              <MobileWarning />
+            </div>
+          </TooltipProvider>
           <Toaster />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
