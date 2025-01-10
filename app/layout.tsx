@@ -60,13 +60,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <div className="hidden sm:block">{children}</div>
+            <div className="hidden sm:block">
+              {children}
+              <Analytics />
+            </div>
             <div className="sm:hidden">
               <MobileWarning />
             </div>
           </TooltipProvider>
           <Toaster />
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>
