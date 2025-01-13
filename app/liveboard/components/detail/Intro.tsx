@@ -13,12 +13,36 @@ interface IntroProps {
 }
 
 export default function Intro({ patient }: IntroProps) {
+  // Add color mapping for alertness levels
+  const alertnessColors = {
+    Awake: "bg-green-500",
+    Verbal: "bg-yellow-500",
+    Pain: "bg-orange-500",
+    Unresponsive: "bg-red-500",
+  };
+
+  // Get first letter of alertness for compact display
+  const alertnessInitial = patient.alertness[0];
+
   return (
     <div className="border-b flex justify-between items-center p-4">
       <div className="flex items-center gap-2 md:gap-3">
-        <div className="w-7 h-7 md:w-8 md:h-8 text-white font-medium text-base md:text-lg flex bg-green-500 rounded-full items-center justify-center">
-          {patient.name[0]}
-        </div>
+        <Tooltip>
+          <TooltipTrigger>
+            <div
+              className={`w-7 h-7 md:w-8 md:h-8 text-white font-medium text-base md:text-lg flex ${
+                alertnessColors[patient.alertness]
+              } rounded-full items-center justify-center`}
+            >
+              {alertnessInitial}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>
+              <strong>AVPU:</strong> {patient.alertness}
+            </p>
+          </TooltipContent>
+        </Tooltip>
         <div className="flex flex-col">
           <h1 className="text-lg md:text-2xl font-bold tracking-tighter">
             {patient.name}

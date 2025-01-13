@@ -1,4 +1,5 @@
 export type ObservationType = "realtime" | "manual";
+export type Alertness = "Awake" | "Verbal" | "Pain" | "Unresponsive";
 
 export interface Patient {
   id: string;
@@ -7,6 +8,7 @@ export interface Patient {
   age: number;
   gender: "Male" | "Female";
   status: "Normal" | "Warning" | "Critical";
+  alertness: Alertness;
   lastChecked: string;
   observationType: ObservationType;
   staff: {
@@ -52,6 +54,7 @@ export const mockPatients: Patient[] = [
     age: 58,
     gender: "Female",
     status: "Normal",
+    alertness: "Awake",
     lastChecked: "0:00",
     observationType: "realtime",
     staff: {
@@ -92,9 +95,10 @@ export const mockPatients: Patient[] = [
     id: "2",
     name: "Dave Reynolds",
     bed: "2B",
-    age: 45,
+    age: 38,
     gender: "Male",
     status: "Warning",
+    alertness: "Verbal",
     lastChecked: "2:30",
     observationType: "manual",
     staff: {
@@ -138,6 +142,7 @@ export const mockPatients: Patient[] = [
     age: 62,
     gender: "Female",
     status: "Normal",
+    alertness: "Awake",
     lastChecked: "1:15",
     observationType: "realtime",
     staff: {
@@ -181,6 +186,7 @@ export const mockPatients: Patient[] = [
     age: 51,
     gender: "Male",
     status: "Critical",
+    alertness: "Unresponsive",
     lastChecked: "0:45",
     observationType: "realtime",
     staff: {

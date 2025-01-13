@@ -11,6 +11,13 @@ interface PatientRowProps {
   onClick: () => void;
 }
 
+const alertnessColors: Record<Alertness, string> = {
+  Awake: "bg-green-500",
+  Verbal: "bg-yellow-500",
+  Pain: "bg-orange-500",
+  Unresponsive: "bg-red-500",
+};
+
 export default function PatientRow({
   patient,
   isSelected,
@@ -65,8 +72,12 @@ export default function PatientRow({
           <Badge variant={"outline"}>{patient.lastChecked}</Badge>
         </div>
         <div className="flex text-sm gap-2 items-center mt-0.5">
-          <div className="rounded-full text-xs w-4 h-4 flex items-center justify-center bg-green-500 text-white">
-            {patient.name[0]}
+          <div
+            className={`rounded-full text-xs w-4 h-4 flex items-center justify-center ${
+              alertnessColors[patient.alertness]
+            } text-white`}
+          >
+            {patient.alertness[0]}
           </div>
           <div className="flex gap-1 items-center text-muted-foreground">
             <Bed className="w-4 h-4" />
