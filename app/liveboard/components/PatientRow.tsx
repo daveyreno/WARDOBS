@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Bed } from "lucide-react";
 import { useState } from "react";
-import { Patient } from "../data/mockData";
+import { Alertness, Patient } from "../data/mockData";
 
 interface PatientRowProps {
   patient: Patient;
