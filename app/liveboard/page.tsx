@@ -50,7 +50,7 @@ export default function LiveboardPage() {
 
   return (
     <div className="h-screen flex flex-col p-2 md:p-3">
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-center mb-3 p-2">
         <p className="text-xl font-bold tracking-tighter">WardOBS</p>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
