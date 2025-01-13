@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -6,11 +5,14 @@ export default function Home() {
     <div className="h-screen flex flex-col gap-6 justify-center items-center">
       <div className="text-center flex flex-col gap-2">
         <h1 className="text-4xl font-bold tracking-tighter">Product</h1>
-        <p className="text-lg">Innovating nursing observations to save lives</p>
+        <p className="text-lg">
+          Innovating nursing observations to save lives.
+        </p>
+        <p>Click the liveboard to see see the concept.</p>
       </div>
       <div className="">
         <div className="max-w-xl w-full flex flex-col md:flex-row gap-3 p-4">
-          <Link
+          {/* <Link
             href="/observations"
             className="border hover:bg-muted transition-all duration-300 rounded-lg p-4 w-full md:w-1/2 flex justify-between items-center gap-2"
           >
@@ -21,10 +23,10 @@ export default function Home() {
               </p>
             </div>
             <ChevronRightIcon className="w-4 h-4 text-muted-foreground shrink-0" />
-          </Link>
+          </Link> */}
           <Link
             href="/liveboard"
-            className="border hover:bg-muted transition-all duration-300 rounded-lg p-4 w-full md:w-1/2 flex justify-between items-center gap-2"
+            className="border hover:bg-muted transition-all duration-300 rounded-lg p-4 w-full flex justify-between items-center gap-2"
           >
             <div>
               <h2 className="text-lg font-bold">Liveboard</h2>
@@ -32,7 +34,7 @@ export default function Home() {
                 Real-time digital patient visibility dashboard
               </p>
             </div>
-            <ChevronRightIcon className="w-4 h-4 text-muted-foreground shrink-0" />
+            {/* <ChevronRightIcon className="w-4 h-4 text-muted-foreground shrink-0" /> */}
           </Link>
         </div>
       </div>
