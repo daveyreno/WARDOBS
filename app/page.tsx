@@ -1,71 +1,40 @@
-"use client";
-
-import UserOptions from "@/components/common/UserOptions";
-import { Toaster } from "@/components/ui/sonner";
-import { Pause } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
-import Patients from "./components/patient-list/Patients";
+import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
-  const [isRotating, setIsRotating] = useState(true);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
-  const pauseTimer = useRef<NodeJS.Timeout | null>(null);
-  const PAUSE_DURATION = 3000;
-
-  useEffect(() => {
-    const handleMouseMove = () => {
-      if (!isUserInteracting) {
-        setIsUserInteracting(true);
-        setIsRotating(false);
-
-        toast("Rotation Paused", {
-          description:
-            "Auto-rotation paused while you interact. Will resume in 3 seconds.",
-          duration: 2000,
-          icon: <Pause className="h-4 w-4" />,
-        });
-      }
-
-      if (pauseTimer.current) {
-        clearTimeout(pauseTimer.current);
-      }
-
-      pauseTimer.current = setTimeout(() => {
-        setIsUserInteracting(false);
-        setIsRotating(true);
-      }, PAUSE_DURATION);
-    };
-
-    if (!isUserInteracting) {
-      setIsRotating(true);
-    }
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (pauseTimer.current) {
-        clearTimeout(pauseTimer.current);
-      }
-    };
-  }, [isUserInteracting]);
-
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
-      <Toaster />
-      <div className="p-3 flex justify-between items-center">
-        <div className="text-2xl font-bold tracking-tighter">WardObs</div>
-        <UserOptions
-          isRotating={isRotating}
-          onRotationToggle={() => {
-            setIsRotating(!isRotating);
-            setIsUserInteracting(!isRotating);
-          }}
-        />
+    <div className="h-screen flex flex-col gap-6 justify-center items-center">
+      <div className="text-center flex flex-col gap-2">
+        <h1 className="text-4xl font-bold tracking-tighter">Product</h1>
+        <p className="text-lg">Innovating nursing observations to save lives</p>
       </div>
-      <div className="flex-1 mx-3 mb-3 mt-3 min-h-0 overflow-hidden">
-        <Patients isRotating={isRotating} />
+      <div className="">
+        <div className="max-w-xl w-full flex flex-col md:flex-row gap-3 p-4">
+          <Link
+            href="/observations"
+            className="border hover:bg-muted transition-all duration-300 rounded-lg p-4 w-full md:w-1/2 flex justify-between items-center gap-2"
+          >
+            <div>
+              <h2 className="text-lg font-bold">Observations</h2>
+              <p className="text-sm text-muted-foreground">
+                Real-time patient observations and task management
+              </p>
+            </div>
+            <ChevronRightIcon className="w-4 h-4 text-muted-foreground shrink-0" />
+          </Link>
+          <Link
+            href="/liveboard"
+            className="border hover:bg-muted transition-all duration-300 rounded-lg p-4 w-full md:w-1/2 flex justify-between items-center gap-2"
+          >
+            <div>
+              <h2 className="text-lg font-bold">Liveboard</h2>
+              <p className="text-sm text-muted-foreground">
+                Real-time digital patient visibility dashboard
+              </p>
+            </div>
+            <ChevronRightIcon className="w-4 h-4 text-muted-foreground shrink-0" />
+          </Link>
+        </div>
       </div>
     </div>
   );

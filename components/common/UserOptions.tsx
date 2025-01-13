@@ -9,63 +9,35 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Moon, Pause, Play, Sun } from "lucide-react";
+import { LogOut, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-interface UserOptionsProps {
-  isRotating: boolean;
-  onRotationToggle: () => void;
-}
-
-export default function UserOptions({
-  isRotating,
-  onRotationToggle,
-}: UserOptionsProps) {
+export default function UserOptions() {
   const { setTheme, theme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="h-8 w-8 cursor-pointer">
-          <AvatarImage src="/avatars/nurses/jelle.png" alt="User avatar" />
-          <AvatarFallback>JR</AvatarFallback>
+          <AvatarImage src="/avatars/user.png" alt="User avatar" />
+          <AvatarFallback>JD</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          <p>Jelle Reichert</p>
-          <span className="text-xs text-muted-foreground">
-            jelle.reichert@ward247.com
-          </span>
+          <p className="font-medium">John Doe</p>
+          <p className="text-xs text-muted-foreground">john.doe@hospital.com</p>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {theme === "dark" ? (
-            <>
-              <Sun className="mr-2 h-4 w-4" />
-              <span>Light Mode</span>
-            </>
+            <Sun className="mr-2 h-4 w-4" />
           ) : (
-            <>
-              <Moon className="mr-2 h-4 w-4" />
-              <span>Dark Mode</span>
-            </>
+            <Moon className="mr-2 h-4 w-4" />
           )}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={onRotationToggle}>
-          {isRotating ? (
-            <>
-              <Pause className="mr-2 h-4 w-4" />
-              <span>Pause Rotation</span>
-            </>
-          ) : (
-            <>
-              <Play className="mr-2 h-4 w-4" />
-              <span>Start Rotation</span>
-            </>
-          )}
+          <span>{theme === "dark" ? "Light" : "Dark"} Mode</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-destructive">

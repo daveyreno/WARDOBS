@@ -1,7 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -29,21 +27,8 @@ const wardfont = localFont({
 
 export const metadata: Metadata = {
   title: "WardObs",
-  description: "To try to get a job at a cool startup again.",
+  description: "",
 };
-
-function MobileWarning() {
-  return (
-    <div className="flex h-screen items-center justify-center p-4 text-center">
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Desktop View Required</h1>
-        <p className="text-muted-foreground">
-          Please view WardObs on a larger screen for the best experience.
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function RootLayout({
   children,
@@ -59,16 +44,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>
-            <div className="hidden sm:block">
-              {children}
-              <Analytics />
-            </div>
-            <div className="sm:hidden">
-              <MobileWarning />
-            </div>
-          </TooltipProvider>
-          <Toaster />
+          <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
