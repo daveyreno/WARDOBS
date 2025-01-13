@@ -1,6 +1,7 @@
 import { Patient } from "../../data/mockData";
 import Intro from "./Intro";
-import ManualObservations from "./ManualObservations";
+import { ManualObservations } from "./ManualObservations";
+
 import NextSteps from "./NextSteps";
 import { RealtimeObservations } from "./RealtimeObservations";
 

@@ -1,51 +1,70 @@
 import { Button } from "@/components/ui/button";
+import { Patient } from "../../data/mockData";
 
-export default function ManualObservations() {
+interface ManualObservationsProps {
+  patient: Patient;
+}
+
+export function ManualObservations({ patient }: ManualObservationsProps) {
+  const { manual } = patient.vitals;
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 rounded-xl border">
-      <div className="p-4 border-r border-b text-center">
+    <div className="grid grid-cols-3 rounded-xl border">
+      <div className="p-6 border-r border-b">
         <p className="text-sm text-muted-foreground">Last Checked</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">0:00</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.lastChecked}
+          </p>
           <p className="text-sm text-muted-foreground">ago</p>
         </div>
       </div>
-      <div className="p-4 border-b text-center md:border-r">
+      <div className="p-6 border-r border-b">
         <p className="text-sm text-muted-foreground">Heart Rate</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">82</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.heartRate}
+          </p>
           <p className="text-sm text-muted-foreground">bpm</p>
         </div>
       </div>
-      <div className="p-4 border-r border-b md:border-r-0 text-center">
+      <div className="p-6 border-b">
         <p className="text-sm text-muted-foreground">Blood Pressure</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">138/88</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.bloodPressure}
+          </p>
           <p className="text-sm text-muted-foreground">mmHg</p>
         </div>
       </div>
-      <div className="p-4 border-b md:border-b-0 text-center md:border-r">
+      <div className="p-6 border-r">
         <p className="text-sm text-muted-foreground">O2 Saturation</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">97</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.o2Saturation}
+          </p>
           <p className="text-sm text-muted-foreground">%</p>
         </div>
       </div>
-      <div className="p-4 border-r md:border-r text-center">
+      <div className="p-6 border-r">
         <p className="text-sm text-muted-foreground">SYS/DIA</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">102/75</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.sysDia}
+          </p>
           <p className="text-sm text-muted-foreground">mmHg</p>
         </div>
       </div>
-      <div className="p-4 text-center">
+      <div className="p-6">
         <p className="text-sm text-muted-foreground">Temperature</p>
-        <div className="mt-1 flex items-baseline justify-center gap-1">
-          <p className="text-2xl font-semibold">37.1</p>
+        <div className="flex items-baseline gap-1">
+          <p className="text-4xl tracking-tighter font-semibold tabular-nums">
+            {manual.temperature}
+          </p>
           <p className="text-sm text-muted-foreground">°C</p>
         </div>
       </div>
-      <div className="col-span-2 md:col-span-3 border-t p-2 flex gap-2">
+      <div className="col-span-3 border-t p-2 flex gap-2">
         <Button className="w-full" variant={"outline"}>
           Request
         </Button>
