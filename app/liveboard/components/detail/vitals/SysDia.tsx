@@ -10,7 +10,7 @@ export function SysDia({ value }: SysDiaProps) {
       <div className="relative">
         <p className="text-sm text-muted-foreground">SYS/DIA</p>
         <div className="flex items-baseline gap-1">
-          <p className="text-2xl font-semibold">{value}</p>
+          <p className="text-2xl font-semibold tracking-tight">{value}</p>
           <p className="text-sm text-muted-foreground">mmHg</p>
         </div>
         <div className="absolute bottom-3 right-3">

@@ -24,7 +24,7 @@ export function BloodPressure({ value }: BloodPressureProps) {
       <div className="relative">
         <p className="text-sm text-muted-foreground">Blood Pressure</p>
         <div className="flex items-baseline gap-1">
-          <p className="text-2xl font-semibold tabular-nums">
+          <p className="text-2xl font-semibold tracking-tight">
             {displaySys}/{displayDia}
           </p>
           <p className="text-sm text-muted-foreground">mmHg</p>

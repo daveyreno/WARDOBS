@@ -20,7 +20,9 @@ export function Temperature({ value }: TemperatureProps) {
       <div className="relative">
         <p className="text-sm text-muted-foreground">Temperature</p>
         <div className="flex items-baseline gap-1">
-          <p className="text-2xl font-semibold tabular-nums">{displayValue}</p>
+          <p className="text-2xl font-semibold tracking-tight">
+            {displayValue}
+          </p>
           <p className="text-sm text-muted-foreground">°C</p>
         </div>
         <div className="absolute bottom-3 right-3 flex items-center gap-0.5">
