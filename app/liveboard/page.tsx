@@ -53,30 +53,38 @@ export default function LiveboardPage() {
       <div className="flex justify-between items-center mb-3 p-2">
         <p className="text-xl font-bold tracking-tighter">WardOBS</p>
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <Switch
-              checked={isAutoRotating}
-              onCheckedChange={setIsAutoRotating}
-            />
-            <span className="text-sm text-muted-foreground">Auto</span>
-          </div>
           <UserOptions />
         </div>
       </div>
       <div className="flex gap-4 flex-1 min-h-0">
-        <ScrollArea className="hidden md:block w-1/3 border rounded-lg">
-          {mockPatients.map((patient) => (
-            <PatientRow
-              key={patient.id}
-              patient={patient}
-              isSelected={selectedPatient.id === patient.id}
-              progress={selectedPatient.id === patient.id ? progress : 0}
-              onClick={() => handlePatientClick(patient)}
+        <div className="hidden md:flex flex-col w-1/3 rounded-lg border overflow-hidden">
+          <ScrollArea className="flex-1">
+            {mockPatients.map((patient) => (
+              <PatientRow
+                key={patient.id}
+                patient={patient}
+                isSelected={selectedPatient.id === patient.id}
+                progress={selectedPatient.id === patient.id ? progress : 0}
+                onClick={() => handlePatientClick(patient)}
+              />
+            ))}
+          </ScrollArea>
+          <div className="border-t flex items-center justify-center text-xs text-muted-foreground gap-2 p-3">
+            <Switch
+              checked={isAutoRotating}
+              onCheckedChange={setIsAutoRotating}
             />
-          ))}
-        </ScrollArea>
+            <p>Auto Rotate</p>
+          </div>
+        </div>
+
         <div className="w-full md:w-2/3 border rounded-lg overflow-auto">
-          <PatientDetail patient={selectedPatient} />
+          <PatientDetail
+            patient={selectedPatient}
+            onPatientChange={handlePatientClick}
+            isAutoRotating={isAutoRotating}
+            onAutoRotateChange={setIsAutoRotating}
+          />
         </div>
       </div>
     </div>

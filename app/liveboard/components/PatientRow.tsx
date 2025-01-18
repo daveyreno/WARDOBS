@@ -31,19 +31,19 @@ export default function PatientRow({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`flex border-b hover:bg-muted/50 transition-all duration-300 cursor-pointer relative ${
+      className={`flex border-b hover:bg-muted/50 transition-all duration-300 cursor-pointer relative first:rounded-t-lg last:rounded-b-lg ${
         isSelected ? "bg-muted/70" : ""
       }`}
     >
       <motion.div
         initial={false}
         animate={{
-          width: isSelected ? "3px" : "6px",
-          height: isSelected ? "calc(100% - 6px)" : "6px",
+          width: "3px",
+          height: isSelected ? "100%" : "6px",
           borderRadius: "9999px",
           opacity: isHovered || isSelected ? 1 : 0,
-          left: isSelected ? "3px" : "6px",
-          top: isSelected ? "3px" : "calc(50% - 3px)",
+          left: "0",
+          top: isSelected ? "0" : "calc(50% - 3px)",
         }}
         transition={{
           type: "spring",
@@ -62,8 +62,10 @@ export default function PatientRow({
             duration: 0.1,
             ease: "linear",
           }}
-          className="absolute left-0 top-0 w-[3px] bg-primary/30 rounded-full"
-          style={{ margin: "3px" }}
+          className="absolute left-0 top-0 w-[3px] bg-primary/30"
+          style={{
+            borderRadius: "9999px",
+          }}
         />
       )}
       <div className="p-2 w-full ml-4">
